@@ -1,0 +1,11 @@
+
+<ul class='text-discount'>
+  <% if @discounts && @discounts.length > 0 %>
+    <% @discounts.each do |discount| %>
+      <% dp = DiscountPresenter.new(discount) %>
+      <li><%= dp.uppercase_first_item_name %> + <%= dp.uppercase_second_item_name %> = <span class='item-link'>SAVED</span> <%= dp.total_discount_amount_with_currency %></li>
+    <% end %>
+  <% else %>
+    <li>No Discounts found.</li>
+  <% end %>
+</ul>

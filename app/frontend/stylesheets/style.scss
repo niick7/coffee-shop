@@ -1,0 +1,40 @@
+body {
+  color: white;
+}
+
+.badge-custom {
+  padding: 0.55em 0.65em;
+  font-size: 0.45em;
+  transform: translate(-40%, -40%) !important;
+}
+
+main {
+  background: url('../images/coffee_beans_4000x2250.jpg');
+}
+
+.text-item {
+  color: #EB9;
+}
+
+.item-link {
+  color: #0dcefd;
+}
+
+.text-discount, .text-price {
+  color: $pink-500;
+}
+
+.items-in-cart {
+  color: $blue-200;
+  width: 90%;
+}
+
+.cart-subtotal {
+  color: white;
+}
+
+.tr-cart-submit {
+  td, th {
+    border: 0;
+  }
+}

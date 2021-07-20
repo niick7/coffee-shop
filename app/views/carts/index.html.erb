@@ -1,0 +1,51 @@
+<% if @items.blank? %>
+  <h4 class='item-link'>Your cart is empty.</h4>
+<% else %>
+  <table class="table items-in-cart">
+    <thead>
+      <tr class='item-link'>
+        <th scope="col">#</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each_with_index do |item, idx| %>
+        <% ip = ItemPresenter.new(item) %>
+        <tr>
+          <th scope="row"><%= idx + 1 %></th>
+          <td><%= ip.name %></td>
+          <td><%= session[:cart][ip.id.to_s] %></td>
+          <td>$<%= number_with_precision(ip.amount_with_tax.to_d * session[:cart][ip.id.to_s], precision: 2) %></td>
+        </tr>
+      <% end %>
+      <tr class='cart-subtotal'>
+        <th scope="row"></th>
+        <td></td>
+        <td>Sub Total</td>
+        <td>$<%= @sub_total %></td>
+      </tr>
+      <tr class='cart-subtotal'>
+        <th scope="row"></th>
+        <td></td>
+        <td>Total discount</td>
+        <td>$<%= @discount_amount %></td>
+      </tr>
+      <tr class='text-price'>
+        <th scope="row"></th>
+        <td></td>
+        <th>Total</th>
+        <th>$<%= @total %></th>
+      </tr>
+      <tr class='tr-cart-submit'>
+        <th scope="row"><%= link_to 'Clear Cart', clear_cart_carts_path, class: 'btn btn-danger' %></th>
+        <td></td>
+        <td></td>
+        <th>
+          <%= link_to 'Check Out', checkout_carts_path, class: 'btn btn-warning', method: :post %>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
